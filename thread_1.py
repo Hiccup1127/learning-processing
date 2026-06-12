@@ -21,6 +21,8 @@ thread2.join()
 # Thread - A thread is the smallest unit of execution that an
 # operating system can schedule. It is often called a lightweight process.
 
+# Threads inside the same process share memory, system resources and the code.
+
 # While a process represents the container (the memory, the network
 # sockets, the file handles), the thread represents the actual
 # execution (running the code). Every single process has at least one
