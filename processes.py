@@ -37,3 +37,8 @@ import time
 #	print("I\'m a child process! my pid: %i" % os.getpid())
 #else:
 #	while (True): print(1)
+
+
+
+# As I founded in internet: Process - a running instance of a program
+# being executed by an operating system.

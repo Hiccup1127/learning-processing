@@ -1,22 +1,20 @@
 import os
-import sys
 import time
 
 pid = os.fork()
 
-
 if (pid == 0):
-	a = input(f"[Child {os.getpid()}] type in here ^^ -> ")
-	print("hello from child")
-	time.sleep(2)
-
-	print("[Child {os.getpid()}] exiting")
-	sys.exit(0)
-
+	while (True): print(1)
 else:
-	a = input(f"[Parent {os.getpid()}] type smth -> ")
-	print("hello from parent")
-	time.sleep(5)
+	print("Hello, I'm parent!")
+	time.sleep(10)
 
-	print(os.wait())
-	print(pid) # the same as the first number of wait - child' pid
+# This creates orphan process, when parent process executes, and closes,
+# The child will become an orphan process. Those processes don't live
+# in system on their own, because if so then there won't be any who will
+# take their pid, os.wait() and close them. They automatically become inherited by
+# init (or systemd) which is the 1 process.
+
+# run ps -C python3 -o pid, ppid, cmd first after running this script, and 10
+# seconds later, you'll see that child's process no longer inherited by its parent,
+# but the root init process.

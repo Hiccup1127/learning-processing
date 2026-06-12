@@ -5,17 +5,21 @@ import time
 pid = os.fork()
 
 if (pid==0):
-	print(f"[Child {os.getpid()}] I'm working haaard...")
-	time.sleep(10)
 
+	for i in range(1,6):
+		print(f"[Child] step {i}")
+		time.sleep(1)
+
+	time.sleep(10)
 	sys.exit(0)
 
-q = input("Hello! Hope you're doing great? This message runs aside of child process.")
+else:
 
-print(f"[Parent {os.getpid()}, child's id: {pid}] Waiting for child...")
-os.wait()
+	for i in range(1,8):
+		print(f"[Parent] step {i}")
+		time.sleep(1)
 
-a = int(input("Enter a -> "))
-b = int(input("Enter b -> "))
+	print(os.waitpid(pid, os.WNOHANG)) # just checks child without freezing
+#	print(os.wait()) # freezes parent until child is dead
 
-print("Result is %i"%(a+b))
+	time.sleep(5)
